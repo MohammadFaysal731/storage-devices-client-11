@@ -7,7 +7,7 @@ import Inventories from './Page/Inventories/Inventories';
 import Footer from './Page/ShearPage/Footer/Footer';
 function App() {
   return (
-    <div className="App">
+    <div className="">
       <Header></Header>
       <Routes>
         <Route path='/' element={<Home></Home>}></Route>

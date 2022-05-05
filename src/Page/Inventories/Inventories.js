@@ -7,7 +7,7 @@ const Inventories = () => {
     const [inventories, setInventories] = useInventories([]);
     return (
         <div className="container">
-            <h1 className='m-4'><u>Inventories</u></h1>
+            <h1 className='m-4 text-center'>Inventories</h1>
 
             <Row xs={1} md={2} className="g-4">
                 {

@@ -17,6 +17,7 @@ Website Purpose:
 5.Initially, do not spend too much thinking about the design. Just spend 5-10 minutes to finalize the idea. Another 15-30 minutes to search for a similar website design and start working on the project. If needed, put a placeholder image and keep developing the functionalities. Once the functionalities are implemented, come back to add relevant images.
 
 Task Details:
+
 1.Home page will have a header (simple navbar), banner, items (inventory items that you are managing. Maximum 6 items), and footer.
 
 2.Add two extra sections on the home page and the four sections mentioned above. Tips: This is the place to shine. Add something different and unique to make your website looks different than others. And Make them relevant to your website.

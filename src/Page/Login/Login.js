@@ -29,6 +29,7 @@ const Login = () => {
                 <p>New To Storage Devices ?
                     <button onClick={handleRegister} type="button" class="btn btn-link text-decoration-none">Register</button>
                 </p>
+                <p>Forget Password ? <button className='btn btn-link text-decoration-none'>Reset Password</button></p>
             </Form>
             <SocialLogin></SocialLogin>
         </div>

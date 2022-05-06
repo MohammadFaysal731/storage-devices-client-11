@@ -31,7 +31,7 @@ const Register = () => {
                     <Form.Control type="number" placeholder="Phone" />
                 </Form.Group>
                 <Button variant="btn btn-outline-dark w-100" type="submit">
-                    Login
+                    Register
                 </Button>
                 <p>New To Storage Devices ?
                     <button onClick={handleLogin} type="button" class="btn btn-link text-decoration-none">Login</button>

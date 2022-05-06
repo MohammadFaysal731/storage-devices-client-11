@@ -2,6 +2,7 @@ import React from 'react';
 import { Button, Form } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import SocialLogin from '../ShearPage/SocialLogin/SocialLogin';
+import { FiLogIn } from 'react-icons/fi';
 
 const Login = () => {
     const navigate = useNavigate();
@@ -24,14 +25,14 @@ const Login = () => {
                     <Form.Control type="password" placeholder="Password" />
                 </Form.Group>
                 <Button variant="btn btn-outline-dark w-100" type="submit">
-                    Login
+                    Login<FiLogIn className='mx-2'></FiLogIn>
                 </Button>
                 <p>New To Storage Devices ?
                     <button onClick={handleRegister} type="button" class="btn btn-link text-decoration-none">Register</button>
                 </p>
                 <p>Forget Password ? <button className='btn btn-link text-decoration-none'>Reset Password</button></p>
+                <SocialLogin></SocialLogin>
             </Form>
-            <SocialLogin></SocialLogin>
         </div>
     );
 };

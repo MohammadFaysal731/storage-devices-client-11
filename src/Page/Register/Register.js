@@ -1,6 +1,7 @@
 import React from 'react';
 import { Button, Form } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
+import SocialLogin from '../ShearPage/SocialLogin/SocialLogin';
 
 const Register = () => {
     const navigate = useNavigate();
@@ -36,6 +37,7 @@ const Register = () => {
                 <p>New To Storage Devices ?
                     <button onClick={handleLogin} type="button" class="btn btn-link text-decoration-none">Login</button>
                 </p>
+                <SocialLogin></SocialLogin>
             </Form>
         </div>
     );

@@ -1,10 +1,15 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Row } from 'react-bootstrap';
-import useInventories from '../../hooks/useInventories';
-import Inventory from '../Inventory/Inventory';
+import Inventory from '../Inventory/Inventory'
 
 const Inventories = () => {
-    const [inventories, setInventories] = useInventories([]);
+    const [inventories, setInventories] = useState([]);
+
+    useEffect(() => {
+        fetch('http://localhost:5000/inventories')
+            .then(res => res.json())
+            .then(data => setInventories(data))
+    }, [])
     return (
         <div className="container">
             <h1 className='m-4 text-center'>Inventories</h1>

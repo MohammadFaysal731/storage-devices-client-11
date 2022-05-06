@@ -1,7 +1,7 @@
 import { Route, Routes } from 'react-router-dom';
 import './App.css';
 import Header from './Page/ShearPage/Header/Header';
-import Home from './Page/Home/Home';
+import Home from './Page/Home/Home/Home';
 import NotFound from './Page/ShearPage/NotFound/NotFound';
 import Inventories from './Page/Inventories/Inventories';
 import Footer from './Page/ShearPage/Footer/Footer';

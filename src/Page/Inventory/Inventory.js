@@ -16,7 +16,7 @@ const Inventory = ({ inventory }) => {
                             <h5>Quantity:{quantity} Pcs</h5>
                             <p title={supplierName}>SupplierName:{supplierName < 60 ? supplierName.slice(0, 60) : supplierName.slice(0, 60) + "...."}</p>
                             <h5>Sold:{sold}</h5>
-                            <Button variant="outline-primary">Success</Button>
+                            <Button variant="outline-dark">Update</Button>
                             &nbsp;
                             <Button variant="outline-success">Success</Button>
                         </Card.Body>

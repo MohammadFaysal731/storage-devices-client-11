@@ -4,8 +4,9 @@ import { useNavigate } from 'react-router-dom';
 import SocialLogin from '../ShearPage/SocialLogin/SocialLogin';
 import { FiLogIn } from 'react-icons/fi';
 import auth from '../../firebase.init';
-import { useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
+import { useSendPasswordResetEmail, useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
 import Loading from '../ShearPage/Loading/Loading';
+import { async } from '@firebase/util';
 
 const Login = () => {
     const navigate = useNavigate();
@@ -18,6 +19,10 @@ const Login = () => {
         error,
     ] = useSignInWithEmailAndPassword(auth);
 
+    const [sendPasswordResetEmail, restPasswordSending, resetPasswordError] = useSendPasswordResetEmail(
+        auth
+    );
+
     let errorElement;
 
     const handleRegister = () => {
@@ -27,10 +32,10 @@ const Login = () => {
     if (user) {
         navigate('/blogs')
     }
-    if (loading) {
+    if (loading || restPasswordSending) {
         return <Loading></Loading>
     }
-    if (errorElement) {
+    if (errorElement || resetPasswordError) {
         errorElement = <p className='text-danger'>{error?.message}</p>
     }
     const handleLogin = event => {
@@ -39,6 +44,18 @@ const Login = () => {
         const password = passwordRef.current.value;
         signInWithEmailAndPassword(email, password)
     }
+
+    const handelRestPassword = async () => {
+        const email = emailRef.current.value;
+        if (email) {
+            await sendPasswordResetEmail(email);
+            alert('Sent email');
+        }
+        else {
+            alert('Enter your email')
+        }
+    }
+
     return (
         <div>
 
@@ -59,7 +76,7 @@ const Login = () => {
                 <p>New To Storage Devices ?
                     <button onClick={handleRegister} type="button" className="btn btn-link text-decoration-none">Register</button>
                 </p>
-                <p>Forget Password ? <button className='btn btn-link text-decoration-none'>Reset Password</button></p>
+                <p>Forget Password ? <button onClick={handelRestPassword} className='btn btn-link text-decoration-none'>Reset Password</button></p>
                 <SocialLogin></SocialLogin>
             </Form>
         </div>

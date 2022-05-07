@@ -21,6 +21,7 @@ const Inventories = () => {
                         key={inventory.id}
                     ></Inventory>)
                 }
+
             </Row>
         </div>
 

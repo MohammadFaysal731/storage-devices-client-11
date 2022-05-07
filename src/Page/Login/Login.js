@@ -1,12 +1,12 @@
 import React, { useRef } from 'react';
 import { Button, Form } from 'react-bootstrap';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import SocialLogin from '../ShearPage/SocialLogin/SocialLogin';
 import { FiLogIn } from 'react-icons/fi';
 import auth from '../../firebase.init';
 import { useSendPasswordResetEmail, useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
 import Loading from '../ShearPage/Loading/Loading';
-import { async } from '@firebase/util';
+
 
 const Login = () => {
     const navigate = useNavigate();
@@ -25,12 +25,16 @@ const Login = () => {
 
     let errorElement;
 
+    const location = useLocation();
+    const from = location.state?.from?.pathname || "/";
+
+
     const handleRegister = () => {
         navigate('/register')
     }
 
     if (user) {
-        navigate('/blogs')
+        navigate(from, { replace: true });
     }
     if (loading || restPasswordSending) {
         return <Loading></Loading>

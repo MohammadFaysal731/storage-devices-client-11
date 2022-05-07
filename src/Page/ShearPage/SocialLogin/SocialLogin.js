@@ -1,9 +1,9 @@
-import React from 'react';
 import { useSignInWithGoogle } from 'react-firebase-hooks/auth';
 import { FcGoogle } from 'react-icons/fc';
 import { FiLogIn } from 'react-icons/fi';
 import { useNavigate } from 'react-router-dom';
 import auth from '../../../firebase.init';
+import Loading from '../Loading/Loading';
 const SocialLogin = () => {
     const [signInWithGoogle, googleUser, googleLoading, googleError] = useSignInWithGoogle(auth);
     const navigate = useNavigate();
@@ -12,10 +12,10 @@ const SocialLogin = () => {
         navigate('/inventory')
     }
     if (googleError) {
-        errorElement = <p className='text-danger'>{googleError.message}</p>
+        errorElement = <p className='text-danger'>{googleError?.message}</p>
     }
     if (googleLoading) {
-        console.log(googleLoading)
+        return <Loading></Loading>
     }
 
     return (

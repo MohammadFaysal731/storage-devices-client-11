@@ -1,12 +1,11 @@
 import React, { useRef } from 'react';
 import { Button, Form } from 'react-bootstrap';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import SocialLogin from '../ShearPage/SocialLogin/SocialLogin';
 import { FiLogIn } from 'react-icons/fi';
 import { useCreateUserWithEmailAndPassword, useSendEmailVerification } from 'react-firebase-hooks/auth';
 import auth from '../../firebase.init';
 import Loading from '../ShearPage/Loading/Loading';
-import { async } from '@firebase/util';
 const Register = () => {
     const navigate = useNavigate();
     const nameRef = useRef();
@@ -21,6 +20,10 @@ const Register = () => {
     ] = useCreateUserWithEmailAndPassword(auth, { sendEmailVerification: true });
     const [sendEmailVerification, sending, verificationError] = useSendEmailVerification(auth);
     let errorElement;
+
+    const location = useLocation();
+    const from = location.state?.from?.pathname || "/";
+
     const handleLogin = () => {
         navigate('/login')
     }
@@ -45,7 +48,7 @@ const Register = () => {
             await sendEmailVerification();
             alert('Sent email')
             await createUserWithEmailAndPassword(email, password);
-            navigate('/blogs')
+            navigate(from, { replace: true });
         }
 
 

@@ -1,15 +1,20 @@
 import { useSignInWithGoogle } from 'react-firebase-hooks/auth';
 import { FcGoogle } from 'react-icons/fc';
 import { FiLogIn } from 'react-icons/fi';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import auth from '../../../firebase.init';
 import Loading from '../Loading/Loading';
 const SocialLogin = () => {
     const [signInWithGoogle, googleUser, googleLoading, googleError] = useSignInWithGoogle(auth);
     const navigate = useNavigate();
     let errorElement;
+
+    const location = useLocation();
+    const from = location.state?.from?.pathname || "/";
+
+
     if (googleUser) {
-        navigate('/inventory')
+        navigate(from, { replace: true });
     }
     if (googleError) {
         errorElement = <p className='text-danger'>{googleError?.message}</p>

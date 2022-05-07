@@ -62,7 +62,7 @@ const Register = () => {
                 <h3>Please Register</h3>
                 <Form.Group className="mb-3" controlId="formBasicName">
                     <Form.Label>Enter Name</Form.Label>
-                    <Form.Control ref={nameRef} type="name" placeholder="Name" />
+                    <Form.Control ref={nameRef} type="text" placeholder="Name" />
                 </Form.Group>
 
                 <Form.Group className="mb-3" controlId="formBasicEmail">

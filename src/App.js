@@ -8,7 +8,8 @@ import Login from './Page/Login/Login';
 import Register from './Page/Register/Register';
 import Blogs from './Page/Blogs/Blogs';
 import RequireAuth from './Page/ShearPage/RequireAuth/RequireAuth';
-import InventoryDetails from './Page/InventoryDetails/InventoryDetails';
+import InventoryItems from './Page/InventoryItems/InventoryItems';
+
 function App() {
   return (
     <div className="">
@@ -18,7 +19,7 @@ function App() {
         <Route path='/home' element={<Home></Home>}></Route>
         <Route path='/inventory/:id' element={
           <RequireAuth>
-            <InventoryDetails></InventoryDetails>
+            <InventoryItems></InventoryItems>
           </RequireAuth>
         }></Route>
         <Route path='/blogs' element={<Blogs></Blogs>}></Route>

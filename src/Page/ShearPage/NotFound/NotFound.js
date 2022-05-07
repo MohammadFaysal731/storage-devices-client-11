@@ -1,9 +1,9 @@
 import React from 'react';
-
+import page404 from '../../../images/404page/creative-error-404-pages.png'
 const NotFound = () => {
     return (
         <div>
-            <h1>404</h1>
+            <img className='w-100' src={page404} alt="" />
         </div>
     );
 };

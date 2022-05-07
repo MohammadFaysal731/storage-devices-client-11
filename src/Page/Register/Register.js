@@ -2,7 +2,7 @@ import React from 'react';
 import { Button, Form } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import SocialLogin from '../ShearPage/SocialLogin/SocialLogin';
-
+import { FiLogIn } from 'react-icons/fi';
 const Register = () => {
     const navigate = useNavigate();
 
@@ -32,10 +32,10 @@ const Register = () => {
                     <Form.Control type="number" placeholder="Phone" />
                 </Form.Group>
                 <Button variant="btn btn-outline-dark w-100" type="submit">
-                    Register
+                    Register<FiLogIn className='mx-2'></FiLogIn>
                 </Button>
                 <p>New To Storage Devices ?
-                    <button onClick={handleLogin} type="button" class="btn btn-link text-decoration-none">Login</button>
+                    <button onClick={handleLogin} type="button" className="btn btn-link text-decoration-none">Login</button>
                 </p>
                 <SocialLogin></SocialLogin>
             </Form>

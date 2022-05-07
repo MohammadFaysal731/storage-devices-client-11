@@ -10,10 +10,13 @@ const Login = () => {
     const handleRegister = () => {
         navigate('/register')
     }
+    const handleLogin = event => {
+        event.preventDefault();
+    }
     return (
         <div>
 
-            <Form className='w-50 mx-auto border border-dark rounded p-3 m-5 '>
+            <Form onSubmit={handleLogin} className='w-50 mx-auto border border-dark rounded p-3 m-5 '>
                 <h3>Please Login</h3>
                 <Form.Group className="mb-3" controlId="formBasicEmail">
                     <Form.Label>Email address</Form.Label>
@@ -28,7 +31,7 @@ const Login = () => {
                     Login<FiLogIn className='mx-2'></FiLogIn>
                 </Button>
                 <p>New To Storage Devices ?
-                    <button onClick={handleRegister} type="button" class="btn btn-link text-decoration-none">Register</button>
+                    <button onClick={handleRegister} type="button" className="btn btn-link text-decoration-none">Register</button>
                 </p>
                 <p>Forget Password ? <button className='btn btn-link text-decoration-none'>Reset Password</button></p>
                 <SocialLogin></SocialLogin>

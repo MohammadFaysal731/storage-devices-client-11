@@ -1,17 +1,43 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { Button, Form } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import SocialLogin from '../ShearPage/SocialLogin/SocialLogin';
 import { FiLogIn } from 'react-icons/fi';
+import auth from '../../firebase.init';
+import { useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
+import Loading from '../ShearPage/Loading/Loading';
 
 const Login = () => {
     const navigate = useNavigate();
+    const emailRef = useRef();
+    const passwordRef = useRef();
+    const [
+        signInWithEmailAndPassword,
+        user,
+        loading,
+        error,
+    ] = useSignInWithEmailAndPassword(auth);
+
+    let errorElement;
 
     const handleRegister = () => {
         navigate('/register')
     }
+
+    if (user) {
+        navigate('/blogs')
+    }
+    if (loading) {
+        return <Loading></Loading>
+    }
+    if (errorElement) {
+        errorElement = <p className='text-danger'>{error?.message}</p>
+    }
     const handleLogin = event => {
         event.preventDefault();
+        const email = emailRef.current.value;
+        const password = passwordRef.current.value;
+        signInWithEmailAndPassword(email, password)
     }
     return (
         <div>
@@ -20,12 +46,12 @@ const Login = () => {
                 <h3>Please Login</h3>
                 <Form.Group className="mb-3" controlId="formBasicEmail">
                     <Form.Label>Email address</Form.Label>
-                    <Form.Control type="email" placeholder="Enter email" />
+                    <Form.Control ref={emailRef} type="email" placeholder="Enter email" />
                 </Form.Group>
 
                 <Form.Group className="mb-3" controlId="formBasicPassword">
                     <Form.Label>Password</Form.Label>
-                    <Form.Control type="password" placeholder="Password" />
+                    <Form.Control ref={passwordRef} type="password" placeholder="Password" />
                 </Form.Group>
                 <Button variant="btn btn-outline-dark w-100" type="submit">
                     Login<FiLogIn className='mx-2'></FiLogIn>

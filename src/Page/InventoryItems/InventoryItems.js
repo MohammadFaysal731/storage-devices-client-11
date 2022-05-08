@@ -3,11 +3,13 @@ import { Button, Card, Col, Form, Row } from 'react-bootstrap';
 import { Link, useParams } from 'react-router-dom';
 
 const InventoryItems = () => {
-    const [item, setItem] = useState([]);
+    const { id } = useParams();
+
+    const [item, setItem] = useState({});
+
+    const [decrease, setDecrease] = useState(0);
 
     const { name, img, description, price, quantity, supplierName, sold, } = item;
-
-    const { id } = useParams();
 
     useEffect(() => {
         const url = `http://localhost:5000/inventory/${id}`
@@ -16,9 +18,12 @@ const InventoryItems = () => {
             .then(data => setItem(data))
     }, [])
 
+
+
+
     return (
         <div className='container'>
-            <h1 className='text-center m-3'>Inventory item:</h1>
+            <h1 className='text-center m-3'>Inventory item</h1>
             <Row xs={1} md={2} className="g-4">
                 <Col>
                     <Card>

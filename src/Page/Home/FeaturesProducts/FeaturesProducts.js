@@ -10,13 +10,13 @@ const FeaturesProducts = () => {
 
 
     useEffect(() => {
-        fetch(`http://localhost:5000/products?page=${page}&size=${size}`)
+        fetch(`https://serene-headland-49364.herokuapp.com/products?page=${page}&size=${size}`)
             .then(res => res.json())
             .then(data => setProducts(data))
     }, [page, size])
 
     useEffect(() => {
-        fetch('http://localhost:5000/productsCount')
+        fetch('https://serene-headland-49364.herokuapp.com/productsCount')
             .then(res => res.json())
             .then(data => {
                 const count = data.count;

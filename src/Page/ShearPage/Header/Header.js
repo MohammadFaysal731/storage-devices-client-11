@@ -4,7 +4,7 @@ import { Container, Nav } from 'react-bootstrap';
 import Navbar from 'react-bootstrap/Navbar'
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { Link } from 'react-router-dom';
-import auth from '../../../firebase.init';
+import auth from '../../../firebaseConfig.init';
 
 const Header = () => {
     const [user] = useAuthState(auth);

@@ -12,7 +12,7 @@ const InventoryItems = () => {
     const { name, img, description, price, quantity, supplierName, sold, } = item;
 
     useEffect(() => {
-        const url = `http://localhost:5000/inventory/${id}`
+        const url = `https://serene-headland-49364.herokuapp.com/inventory/${id}`
         fetch(url)
             .then(res => res.json())
             .then(data => setItem(data))

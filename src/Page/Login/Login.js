@@ -1,9 +1,9 @@
 import React, { useRef } from 'react';
-import { Button, Form, ToastContainer } from 'react-bootstrap';
+import { Button, Form } from 'react-bootstrap';
 import { useLocation, useNavigate } from 'react-router-dom';
 import SocialLogin from '../ShearPage/SocialLogin/SocialLogin';
 import { FiLogIn } from 'react-icons/fi';
-import auth from '../../firebase.init';
+import auth from '../../firebaseConfig.init';
 import { useSendPasswordResetEmail, useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
 import Loading from '../ShearPage/Loading/Loading';
 import { toast } from 'react-toastify';

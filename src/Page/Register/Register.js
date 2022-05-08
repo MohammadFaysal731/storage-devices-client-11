@@ -4,7 +4,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import SocialLogin from '../ShearPage/SocialLogin/SocialLogin';
 import { FiLogIn } from 'react-icons/fi';
 import { useCreateUserWithEmailAndPassword, useSendEmailVerification } from 'react-firebase-hooks/auth';
-import auth from '../../firebase.init';
+import auth from '../../firebaseConfig.init';
 import Loading from '../ShearPage/Loading/Loading';
 const Register = () => {
     const navigate = useNavigate();

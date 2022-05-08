@@ -10,6 +10,7 @@ import Blogs from './Page/Blogs/Blogs';
 import RequireAuth from './Page/ShearPage/RequireAuth/RequireAuth';
 import InventoryItems from './Page/InventoryItems/InventoryItems';
 import ManageInventories from './Page/ManageInventories/ManageInventories';
+import { ToastContainer } from 'react-toastify';
 
 function App() {
   return (
@@ -30,6 +31,7 @@ function App() {
         <Route path='*' element={<NotFound></NotFound>}></Route>
       </Routes>
       <Footer></Footer>
+      <ToastContainer></ToastContainer>
     </div>
   );
 }

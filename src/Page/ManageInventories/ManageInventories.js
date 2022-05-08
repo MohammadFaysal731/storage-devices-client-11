@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { FormControl, InputGroup, Table } from 'react-bootstrap';
 import { FiDelete } from 'react-icons/fi';
 
+
 const ManageInventories = () => {
     const [inventories, setInventories] = useState([]);
 
@@ -10,6 +11,10 @@ const ManageInventories = () => {
             .then(res => res.json())
             .then(data => setInventories(data))
     }, [])
+
+    const handleAddItem = () => {
+        console.log('jjj')
+    }
 
     const handleDelete = id => {
         const url = `http://localhost:5000/inventory/${id}`
@@ -26,7 +31,7 @@ const ManageInventories = () => {
 
     return (
         <div className='container'>
-            <h1 className='text-center m-3'>ManageInventories</h1>
+            <h1 className='text-center m-3'>Manage Inventories</h1>
             <>
                 <InputGroup className="mb-3">
                     <FormControl
@@ -34,7 +39,7 @@ const ManageInventories = () => {
                         aria-label="Recipient's username"
                         aria-describedby="basic-addon2"
                     />
-                    <InputGroup.Text className='btn btn-outline-dark' id="basic-addon2">Add Item</InputGroup.Text>
+                    <InputGroup.Text onSubmit={handleAddItem} className='btn btn-outline-dark' id="basic-addon2">Add Item</InputGroup.Text>
                 </InputGroup>
             </>
             {

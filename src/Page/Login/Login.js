@@ -1,11 +1,12 @@
 import React, { useRef } from 'react';
-import { Button, Form } from 'react-bootstrap';
+import { Button, Form, ToastContainer } from 'react-bootstrap';
 import { useLocation, useNavigate } from 'react-router-dom';
 import SocialLogin from '../ShearPage/SocialLogin/SocialLogin';
 import { FiLogIn } from 'react-icons/fi';
 import auth from '../../firebase.init';
 import { useSendPasswordResetEmail, useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
 import Loading from '../ShearPage/Loading/Loading';
+import { toast } from 'react-toastify';
 
 
 const Login = () => {
@@ -53,10 +54,10 @@ const Login = () => {
         const email = emailRef.current.value;
         if (email) {
             await sendPasswordResetEmail(email);
-            alert('Sent email');
+            toast('Sent email');
         }
         else {
-            alert('Enter your email')
+            toast('Enter your email')
         }
     }
 

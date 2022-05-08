@@ -1,13 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import { Button, Card, Col, Form, Row } from 'react-bootstrap';
+import { Link, useParams } from 'react-router-dom';
 
 const InventoryItems = () => {
     const [item, setItem] = useState([]);
 
-    const { _id, name, img, description, price, quantity, supplierName, sold, } = item;
+    const { name, img, description, price, quantity, supplierName, sold, } = item;
+
+    const { id } = useParams();
 
     useEffect(() => {
-        const url = `http://localhost:5000/inventory/627660dbe09e75a2b819b954`
+        const url = `http://localhost:5000/inventory/${id}`
         fetch(url)
             .then(res => res.json())
             .then(data => setItem(data))
@@ -48,6 +51,10 @@ const InventoryItems = () => {
                     </Card>
                 </Col>
             </Row>
+            <div className="text-center m-4">
+                <Link className='btn btn-outline-dark text-decoration-none fs-5 ' to='/manageInventories'>ManageInventories</Link>
+            </div>
+
         </div>
     );
 };

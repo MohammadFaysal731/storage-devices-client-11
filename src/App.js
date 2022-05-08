@@ -9,6 +9,7 @@ import Register from './Page/Register/Register';
 import Blogs from './Page/Blogs/Blogs';
 import RequireAuth from './Page/ShearPage/RequireAuth/RequireAuth';
 import InventoryItems from './Page/InventoryItems/InventoryItems';
+import ManageInventories from './Page/ManageInventories/ManageInventories';
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
             <InventoryItems></InventoryItems>
           </RequireAuth>
         }></Route>
+        <Route path='/manageInventories' element={<ManageInventories></ManageInventories>}></Route>
         <Route path='/blogs' element={<Blogs></Blogs>}></Route>
         <Route path='/register' element={<Register></Register>}></Route>
         <Route path='/login' element={<Login></Login>}></Route>

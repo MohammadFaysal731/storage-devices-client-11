@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { FormControl, InputGroup, Table } from 'react-bootstrap';
+import { Table } from 'react-bootstrap';
+import { useForm } from 'react-hook-form';
 import { FiDelete } from 'react-icons/fi';
 
 
@@ -12,9 +13,25 @@ const ManageInventories = () => {
             .then(data => setInventories(data))
     }, [])
 
-    const handleAddItem = () => {
-        console.log('jjj')
-    }
+    const { register, handleSubmit } = useForm();
+    const onSubmit = data => {
+        console.log(data)
+        const url = `http://localhost:5000/inventory`
+        fetch(url, {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data)
+            })
+    };
+
+
+
 
     const handleDelete = id => {
         const url = `http://localhost:5000/inventory/${id}`
@@ -32,16 +49,13 @@ const ManageInventories = () => {
     return (
         <div className='container'>
             <h1 className='text-center m-3'>Manage Inventories</h1>
-            <>
-                <InputGroup className="mb-3">
-                    <FormControl
-                        placeholder="Add Item by Image URL"
-                        aria-label="Recipient's username"
-                        aria-describedby="basic-addon2"
-                    />
-                    <InputGroup.Text onSubmit={handleAddItem} className='btn btn-outline-dark' id="basic-addon2">Add Item</InputGroup.Text>
-                </InputGroup>
-            </>
+            <div className="text-center mb-3">
+                <form onSubmit={handleSubmit(onSubmit)}>
+                    <input className='w-75' {...register("img", { required: true, maxLength: 20 })} />
+                    <input type="submit" value='Add Item' />
+                </form>
+            </div>
+
             {
                 inventories.map(inventory =>
                     <div inventory={inventory}>

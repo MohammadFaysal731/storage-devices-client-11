@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Form, Row } from 'react-bootstrap';
-import Product from '../../ShearPage/Product/Product';
+import Product from './Product/Product';
 
 const FeaturesProducts = () => {
     const [products, setProducts] = useState([]);
@@ -10,13 +10,13 @@ const FeaturesProducts = () => {
 
 
     useEffect(() => {
-        fetch(`https://serene-headland-49364.herokuapp.com/products?page=${page}&size=${size}`)
+        fetch(`http://localhost:5000/products?page=${page}&size=${size}`)
             .then(res => res.json())
             .then(data => setProducts(data))
     }, [page, size])
 
     useEffect(() => {
-        fetch('https://serene-headland-49364.herokuapp.com/productsCount')
+        fetch('http://localhost:5000/productsCount')
             .then(res => res.json())
             .then(data => {
                 const count = data.count;
@@ -26,7 +26,7 @@ const FeaturesProducts = () => {
     }, [])
 
     return (
-        <div className="container border border-info mt-3">
+        <div className="container border border-success mt-3">
             <h1 className='text-center m-3'>Features Products</h1>
             <Row xs={1} md={2} className="g-4">
                 {

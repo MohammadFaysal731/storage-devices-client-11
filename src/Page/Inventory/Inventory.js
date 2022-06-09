@@ -17,7 +17,7 @@ const Inventory = ({ inventory }) => {
             {Array.from({ length: 1 }).map((_, idx) => (
                 <Col>
                     <Card className='p-3 border-dark rounded-3'>
-                        <Card.Img variant="top" src={img} className="border border-info rounded-3" style={{ width: "400", height: "400px" }} />
+                        <Card.Img variant="top" src={img} className="border border-success rounded-3" style={{ width: "400", height: "400px" }} />
                         <Card.Body>
                             <Card.Title>{name}</Card.Title>
                             <p className='visually-hidden'>{_id}</p>

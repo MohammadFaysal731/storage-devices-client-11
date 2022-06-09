@@ -8,7 +8,7 @@ const ManageInventories = () => {
     const [inventories, setInventories] = useState([]);
 
     useEffect(() => {
-        fetch('https://serene-headland-49364.herokuapp.com/inventory')
+        fetch('http://localhost:5000/inventory')
             .then(res => res.json())
             .then(data => setInventories(data))
     }, [])
@@ -16,7 +16,7 @@ const ManageInventories = () => {
     const { register, handleSubmit } = useForm();
     const onSubmit = data => {
         console.log(data)
-        const url = `https://serene-headland-49364.herokuapp.com/inventory`
+        const url = `http://localhost:5000/inventory`
         fetch(url, {
             method: 'POST',
             headers: {
@@ -34,7 +34,7 @@ const ManageInventories = () => {
 
 
     const handleDelete = id => {
-        const url = `https://serene-headland-49364.herokuapp.com/inventory/${id}`
+        const url = `http://localhost:5000/inventory/${id}`
         fetch(url, {
             method: 'DELETE'
         })

@@ -1,18 +1,24 @@
 import React, { useEffect, useState } from 'react';
 import { Row } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 import Inventory from '../Inventory/Inventory'
 
 const Inventories = () => {
     const [inventories, setInventories] = useState([]);
 
     useEffect(() => {
-        fetch('https://serene-headland-49364.herokuapp.com/inventory')
+        fetch('http://localhost:5000/inventory')
             .then(res => res.json())
             .then(data => setInventories(data.slice(0, 6)))
     }, [])
     return (
         <div className="container">
-            <h1 className='m-4 text-center'>Inventories</h1>
+            <div className="d-flex justify-content-between m-3">
+                <h2>Inventories</h2>
+                <div >
+                    <Link className='btn btn-outline-dark text-decoration-none fs-5 ' to='/manageInventories'>ManageInventories</Link>
+                </div>
+            </div>
             <Row xs={1} md={2} className="g-4">
                 {
                     inventories.map(inventory => <Inventory

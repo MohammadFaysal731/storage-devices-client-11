@@ -5,7 +5,7 @@ import Navbar from 'react-bootstrap/Navbar'
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { Link } from 'react-router-dom';
 import auth from '../../../firebaseConfig.init';
-
+import userImage from '../../../images/404page/user.jpg'
 const Header = () => {
     const [user] = useAuthState(auth);
 
@@ -27,10 +27,11 @@ const Header = () => {
                             {
                                 user
                                     ? <>
-                                        <Nav.Link as={Link} to="/manageInventories">Manage Items</Nav.Link>
-                                        <Nav.Link as={Link} to="/inventory/:id">Add Item</Nav.Link>
-                                        <Nav.Link as={Link} to="/myitem">My items</Nav.Link>
+                                        <Nav.Link as={Link} to="/manageInventories">Manage Inventories</Nav.Link>
+                                        <Nav.Link as={Link} to="/addInventoryItem">Add Inventory</Nav.Link>
+                                        <Nav.Link as={Link} to="/myItem">My Inventory</Nav.Link>
                                         <button onClick={handleSignOut} className='btn bnt-link text-decoration-none text-white'>Sing out</button>
+                                        <img src={user.photoURL ? user.photoURL : userImage} alt={user.displayName} className='border rounded-pill' style={{ width: '40px' }} />
                                     </>
 
                                     : <Nav.Link as={Link} to="/login">Login</Nav.Link>
@@ -40,7 +41,7 @@ const Header = () => {
                     </Navbar.Collapse>
                 </Container>
             </Navbar>
-        </header>
+        </header >
     );
 };
 

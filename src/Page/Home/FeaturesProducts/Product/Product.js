@@ -2,14 +2,14 @@ import React from 'react';
 import { Card, Col } from 'react-bootstrap';
 
 const Product = ({ product }) => {
-    const { id, name, img, description, price, quantity, supplierName, sold } = product;
+    const { id, name, image, description, price, quantity, supplierName, sold } = product;
     return (
         <div>
 
             {Array.from({ length: 1 }).map((_, idx) => (
                 <Col>
                     <Card className='p-3 border-dark rounded-3'>
-                        <Card.Img variant="top" src={img} className="border border-info rounded-3" style={{ width: "400", height: "400px" }} />
+                        <Card.Img variant="top" src={image} className="border border-info rounded-3" style={{ width: "400", height: "400px" }} />
                         <Card.Body>
                             <Card.Title>{id}{name}</Card.Title>
                             <Card.Text title={description}>{description?.length < 60 ? description.slice(0, 60) : description.slice(0, 60) + "....."}</Card.Text>

@@ -1,84 +1,84 @@
 import React, { useEffect, useState } from 'react';
+
 import { Table } from 'react-bootstrap';
-import { useForm } from 'react-hook-form';
+// import { useForm } from 'react-hook-form';
 import { FiDelete } from 'react-icons/fi';
+import { BiMessageSquareAdd } from 'react-icons/bi';
+import { useNavigate } from 'react-router-dom';
 
 
 const ManageInventories = () => {
     const [inventories, setInventories] = useState([]);
 
-    useEffect(() => {
-        fetch('http://localhost:5000/inventory')
-            .then(res => res.json())
-            .then(data => setInventories(data))
-    }, [])
+    const navigate = useNavigate();
 
-    const { register, handleSubmit } = useForm();
-    const onSubmit = data => {
-        console.log(data)
-        const url = `http://localhost:5000/inventory`
-        fetch(url, {
-            method: 'POST',
-            headers: {
-                'content-type': 'application/json'
-            },
-            body: JSON.stringify(data)
-        })
-            .then(res => res.json())
-            .then(data => {
-                console.log(data)
-            })
-    };
-
-
-
-
-    const handleDelete = id => {
-        const url = `http://localhost:5000/inventory/${id}`
-        fetch(url, {
-            method: 'DELETE'
-        })
-            .then(res => res.json())
-            .then(data => {
-                console.log(data)
-                const remaining = inventories.filter(inventory => inventory._id !== id);
-                setInventories(remaining);
-            })
+    const handelAddInventoryItem = () => {
+        navigate('/addInventoryItem')
     }
 
+    useEffect(() => {
+        fetch('http://localhost:5000/inventories')
+            .then(res => res.json())
+            .then(data => setInventories(data))
+    }, []);
+
+    const handleDelete = id => {
+        const proceed = window.confirm('Are You Sure To Delete')
+        if (proceed) {
+            const url = `http://localhost:5000/inventory/${id}`
+            fetch(url, {
+                method: 'DELETE'
+            })
+                .then(res => res.json())
+                .then(data => {
+                    if (data.deletedCount) {
+                        const remaining = inventories.filter(inventory => inventory._id !== id);
+                        setInventories(remaining);
+                    }
+                })
+        }
+
+    }
+    console.log(inventories)
     return (
         <div className='container'>
             <h1 className='text-center m-3'>Manage Inventories</h1>
-            <div className="text-center mb-3">
-                <form onSubmit={handleSubmit(onSubmit)}>
-                    <input className='w-75' {...register("img", { required: true, maxLength: 20 })} />
-                    <input type="submit" value='Add Item' />
-                </form>
+            <div className="d-flex justify-content-end">
+                <button onClick={handelAddInventoryItem} className='btn btn-outline-dark'>Add New Item<BiMessageSquareAdd className='m-2 fs-4'></BiMessageSquareAdd></button>
             </div>
 
-            {
-                inventories.map(inventory =>
-                    <div inventory={inventory}>
-                        <Table striped bordered hover>
-                            <tbody>
-                                <tr>
-                                    <td className='visually-hidden'>{inventory._id}</td>
-                                    <td>{inventory.name}</td>
-                                    <td title={inventory.description}>{inventory.description.length < 20 ? inventory.description.slice(0, 20) : inventory.description.slice(0, 20) + "....."}{inventory.description}</td>
-
-                                    <td>{inventory.price}</td>
-                                    <td>{inventory.quantity}</td>
-                                    <td title={inventory.supplierName}>{inventory.supplierName.length < 20 ? inventory.supplierName.slice(0, 20) : inventory.supplierName.slice(0, 20) + "...."}</td>
-                                    <td>{inventory.sold}</td>
-                                    <td>
-                                        <button onClick={() => handleDelete(inventory._id)} className='btn btn-outline-dark d-flex justify-content-center align-items-center'>Delete<FiDelete className='m-2 fs-4'></FiDelete></button>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </Table>
-                    </div>
-                )
-            }
+            <Table striped bordered hover>
+                <thead>
+                    <tr>
+                        <th>Sl</th>
+                        <th>Inventory Name</th>
+                        <th>Image</th>
+                        <th>Pice</th>
+                        <th>Quantity</th>
+                        <th>Sold</th>
+                        <th>Remove</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {
+                        inventories?.map((inventory, index) => <tr
+                            inventory={inventory}
+                            key={inventory._id}
+                            index={index}
+                        >
+                            <td>{index + 1}</td>
+                            <td>{inventory.name}</td>
+                            <td><img src={inventory.image} alt={inventory.name} style={{ width: '100px', height: '100px' }} /> </td>
+                            <td>{inventory.price}</td>
+                            <td>{inventory.quantity}</td>
+                            <td>{inventory.sold}</td>
+                            <td>
+                                <button onClick={() => handleDelete(inventory._id)} className='btn btn-outline-dark d-flex justify-content-center align-items-center'>Delete<FiDelete className='m-2 fs-4'></FiDelete></button>
+                            </td>
+                        </tr>)
+                    }
+                </tbody>
+            </Table>
         </div>
     );
 };

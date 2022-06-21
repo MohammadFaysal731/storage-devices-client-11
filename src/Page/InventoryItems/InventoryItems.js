@@ -32,7 +32,7 @@ const InventoryItems = () => {
             .then(result => {
                 console.log(result)
                 if (result.modifiedCount) {
-                    toast.success('Success Fully Delivered Is Done ');
+                    toast.success('Success Fully Delivered Is Done');
                 }
             })
     }
@@ -51,8 +51,10 @@ const InventoryItems = () => {
         })
             .then(res => res.json())
             .then(data => {
-                console.log(data)
-            })
+                if (data.modifiedCount) {
+                    toast.success('Success Fully Restock Is Done');
+                }
+            });
         event.target.reset();
     }
 
@@ -82,7 +84,7 @@ const InventoryItems = () => {
                         <Form onSubmit={handelRestock}>
                             <Form.Group className="mb-3" controlId="formBasicEmail">
                                 <h4 className='text-center'>ADD STOCK</h4>
-                                <Form.Control type="text" name='restock' placeholder="Add Stock" />
+                                <Form.Control type="text" name='restock' placeholder="Add Stock" autoComplete='off' required />
                             </Form.Group>
                             <Button variant="outline-dark w-100" type="submit">
                                 Restock
